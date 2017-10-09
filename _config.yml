@@ -17,7 +17,7 @@ baseurl: "/beautiful-jekyll"
 title: PLTRDY
 
 # Short description of your site
-description: Trying Jekyll blog w/ github.io & Beatiful Jekyll
+description: Natural Language Processing & Deep Learning
 
 # --- Navigation bar options --- #
 
@@ -28,12 +28,7 @@ avatar: "/img/li.jpg"
 # List of links in the navigation bar
 navbar-links:
   Home: ""
-  Resources:
-    - Getting started: "getstarted"
-    - Featured users: "featured-users"
-    - Project page: "https://github.com/daattali/beautiful-jekyll#readme"
-  About me: "#"
-  Support me: "#"
+  About me: "about.md"
 
 # --- Footer options --- #
 
@@ -65,7 +60,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "pltrdy.github.io/beautiful-jekyll"  # eg. "deanattali.com/beautiful-jekyll"
+url-pretty: "pltrdy.github.io/"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Misc --- #
 
