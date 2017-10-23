@@ -5,6 +5,7 @@ subtitle: Objectives, challenges and todo
 ---
 
 # Model overview
+The paper: <https://arxiv.org/pdf/1705.04304.pdf>
 * Encoder 
     * Shared Embeddings (dim=100), vocab src=150k, tgt=50k
     * Bi-directionnal LSTM (dim=2x200)
@@ -33,8 +34,8 @@ The paper states that encoder and decoder embedding must be shared, but, in the 
 The implementation is quite simple: the partial embedding `weight` parameter returns a slice of the `full_embedding` (i.e. the encoder emb). There is a kind of trick that shifts the embedding matrix. In fact, OpenNMT uses special tokens:
 * **padding**: (token=`<pad>` id=1)
 * **unknown**: (token=`<unk>` id=0)
-* **sequence begining**: (token=`<bos>` id=2)
-* **sequence end**: (token=`<eos>` id=3)
+* **sequence begining**: (token=`<s>` id=2)
+* **sequence end**: (token=`<\s>` id=3)
 
 The thing is that there is `<bos>` and `<eos>` only in the decoder. That's why PartialEmbedding has some extra parameters that are inserted in the weight matrix. The rest
 
@@ -48,7 +49,7 @@ First, it uses two kind of intra-attention. Second, it produces tokens at each d
 
 ## Attention
 The attention mechanism is defined in the `IntraAttention` class that is used both both intra-temporal and intra-decoder attention. There is two differences:
-* **attention scores**: the `temporal (default=False)` set whether the mechanisms will use temporal scores $e^{\prime}_{ti}$ as defined in sect. (2.1) eq. (3) or regular scores.
+* **attention scores**: the `temporal (default=False)` set whether the mechanism will use temporal scores $e^{\prime}_{ti}$ as defined in sect. (2.1) eq. (3) or regular scores.
 * **input**: in the forward pass, we use an $h_t$ arg, that correspond either to the encoder outputs $h^e_i$ or the decoder previous outputs $h^d_{t^{\prime}}$
 
 
