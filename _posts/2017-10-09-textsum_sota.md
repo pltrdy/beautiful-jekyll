@@ -42,7 +42,7 @@ subtitle: A review of last models
 
 ### Model
 * Intra-attention Model
-   * attn scores: \\[ e_{ti} = {h_t^d}^T\\]
+   * attn scores: \\[ e_{ti} = {h_t^d}^T W_{attn}^e h_i^e \\]
    * temporal scores: 
         \\[
             e^\prime_{ji} =
@@ -51,3 +51,12 @@ subtitle: A review of last models
                     \frac{exp(e_{ji})}{\sum_{j=1}^{t-1}{exp(e_{ji})}} & \text{otherwise}
                 \end{cases}
         \\]
+    * normalized attn scores:
+        \\[ \alpha_{ti}^e =  \frac{e^\prime_{ti}}{\sum_{j=1}^{n}{e_{tj}^\prime}} \\]
+
+    * context vector:
+        \\[ c_t^e = \sum_{i=1}^{n}{\alpha_{ti}^e h_i^e} \\]
+
+* Intra-decoder attention:
+    * \\[ e_{tt^\prime}^d = {h_t^d}^T W_{attn}^e h_{t^\prime}^d \\]
+    * \\[ \alpha_{tt^\prime}^d =  \frac{e^d_{tt^\prime}}{\sum_{j=1}^{t-1}{e_{tj}^d}} \\]
